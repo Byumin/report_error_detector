@@ -1,7 +1,8 @@
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
+import json
 
-def click_coords(image_path):
+def click_coords(image_path, save_path="coords.json"):
     coords = []  # 클릭된 좌표를 저장할 리스트
 
     def onclick(event):
@@ -22,8 +23,11 @@ def click_coords(image_path):
     # 마지막에 왜 보여주는거임?
     # re : 이벤트 리스터를 명시해주고 plt.show() 실행하는 순간 이벤트 리스터는 동작하게 되어 있음.
     # re : 즉 이벤트 리스터를 동작시켜라 라는 의미의 신호 같은 역할 + 시각화 플롯을 열어주는 역할
+    with open(save_path, "w") as f :
+        json.dump(coords, f)
+    print(f"총 {len(coords)}개의 좌표가 저장되었습니다 -> {save_path}")
 
     return coords
 
 if __name__ == "__main__" :
-    click_coords("page_1.jpg")
+    click_coords("model_sketch/page_1.jpg")
