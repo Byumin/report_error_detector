@@ -5,12 +5,19 @@ import json
 def click_coords(image_path, save_path="coords.json"):
     coords = []  # 클릭된 좌표를 저장할 리스트
 
+    # 클릭 이벤트에 반응하는 인터렉션을 정의하는 함수
     def onclick(event):
         if event.xdata is not None and event.ydata is not None: # event는 matplotlib의 이벤트 객체, xdata와 ydata는 moustevent의 인스턴트 객체
-            coords.append((event.xdata, event.ydata)) # xdata, ydata 데이터를 coords 리스트에 저장 (튜플 형태로)
+            x, y = event.xdata, event.ydata
+            coords.append([x, y]) # 한쌍의 좌표 데이터를 coords 리스트에 저장 (리스트 형태로)
             print(f"클릭된 좌표: ({event.xdata:.2f}, {event.ydata:.2f})") # # xdata, ydata 프린팅
             ax.plot(event.xdata, event.ydata, 'ro')  # 해당 좌표 빨간 점 찍기
             fig.canvas.draw() # 빨간 점을 시각화 업데이트 해주기
+
+            if len(coords) == 2 :
+                print("2개의 점이 지정되었습니다. 해장 박스의 클래스명을 입력해주세요.")
+                label = input("클래스명 (예 : bar, line, table) : ").strip()
+                label #### 어떠한 구조로 저장할지 검토 중 25.06.17
     img = mpimg.imread(image_path)
     fig, ax = plt.subplots()
     ax.imshow(img)
