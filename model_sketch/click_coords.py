@@ -2,7 +2,13 @@ import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 from matplotlib.widgets import TextBox, Button # GUI 위젯을 시각화에 삽입하기 위한 도구
 import json
-
+'''
+!!! 수정 및 확인해야하는 사항
+1. pdf->image 변환하는 작업
+2. image에서 좌표를 지정했을 때 크롭하는 함수에서 정상적인 좌표로 크롭이 되는지
+2-1. 좌표 json 형태가 크롭하는 함수에서 어떻게 받는지
+2-2. 해당 좌표로 잘 크롭이 되는지
+'''
 def click_coords_with_gui(image_path, save_path="coords_labeled.json"): # 전체 인터페이스를 담당하는 메인 GUI 함수
     coords = []  # 클릭된 좌표를 저장할 리스트
     labeled_bbox = [] # 리스트로 딕셔너리(객체)들 묶기
